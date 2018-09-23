@@ -1,6 +1,10 @@
 function reverseInt(num) {
   numStr = num.toString().split('');
-  return num > 0 ? Number(numStr.reverse().join('')) : parseInt("-" + Number(numStr.slice(1).reverse().join('')));  
+  if (num > 0) {
+    return Number(numStr.reverse().join(''))
+  } else { 
+    return parseInt("-" + Number(numStr.slice(1).reverse().join('')));  
+  } 
 }
 
 console.log(reverseInt(123)); // 321

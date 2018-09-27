@@ -1,0 +1,3 @@
+var myAtoi = function(str) {
+    
+};

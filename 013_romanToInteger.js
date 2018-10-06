@@ -8,6 +8,7 @@ const nums = {
   M: 1000
 };
 
+// Time Complexity: O(n);
 const romanToInt = (s) => {
   let total = 0;
   let prev = null;

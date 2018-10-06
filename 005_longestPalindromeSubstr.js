@@ -8,6 +8,8 @@ let isPalindrome = function(str) {
 let longestPalindrome = function(str) {
   let palindromes = [];
 
+  if (str.length < 1) return "";
+
   for (let i = 0; i < str.length; i++) {
     for (let j = 1; j <= str.length; j++) {
       let substr = str.substr(i, j);
@@ -33,3 +35,4 @@ let longestPalindrome = function(str) {
 
 console.log(longestPalindrome("babad")); // "bab"
 console.log(longestPalindrome("cbbd")); // "bb"
+console.log(longestPalindrome(""));

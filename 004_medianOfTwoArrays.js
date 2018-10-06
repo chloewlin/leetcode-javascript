@@ -1,0 +1,1 @@
+console.log(Math.ceil(3.5));

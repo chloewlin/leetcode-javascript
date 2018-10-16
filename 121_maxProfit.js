@@ -1,14 +1,28 @@
 // Time Complexity: O(n2)
 var maxProfit = function(prices) {
   let greatestDiff = 0;
-  for (let i = 0; i < prices.length - 1; i++) {
-    for (let j = i + 1; j < prices.length; j++) {
-      if (prices[j] - prices[i] > greatestDiff) {
-        greatestDiff = prices[j] - prices[i];
+  for (let i = prices.length - 1; i >= 0; i--) {
+    for (let j = i - 1; j >= 0; j--) {
+      if (prices[i] - prices[j] > greatestDiff) {
+        greatestDiff = prices[i] - prices[j];
       }
     }
   }
   
+  return greatestDiff;
+};
+
+// Time Complexity: O(n)
+var maxProfit = function(prices) {
+  var min = prices[0];
+  var greatestDiff = 0; 
+  for (var i = 0; i < prices.length; i++) {
+    if (prices[i] < min) {
+      min = prices[i];
+    } else if (prices[i] - min > greatestDiff) {
+      greatestDiff = prices[i] - min;
+    } 
+  }
   return greatestDiff;
 };
 

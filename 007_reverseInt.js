@@ -1,4 +1,4 @@
-var reverse = function(x) {
+var reverseInt = function(x) {
   let numStr = x.toString().split('');
   let num = 0;
   
@@ -10,7 +10,7 @@ var reverse = function(x) {
     } 
   } 
   
-  if (Math.abs(num) > Math.pow(2, 31)) {
+  if (Math.abs(num) > 2**31) {
     num = 0;
   }
   
@@ -23,5 +23,5 @@ console.log(reverseInt(120)); // 21
 console.log(reverseInt(-123)); // -321
 console.log(reverseInt(12000)); // 21
 console.log(reverseInt(-1234)); // -4321
-console.log(reverseInt(0));
-console.log(reverseInt(1534236469)); // Should be 0
+console.log(reverseInt(0)); // 0
+console.log(reverseInt(1534236469)); // 0

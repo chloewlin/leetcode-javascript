@@ -2,7 +2,7 @@ var reverse = function(x) {
   let numStr = x.toString().split('');
   let num = 0;
   
-  if (Math.abs(x) < Math.pow(2, 31)) {
+  if (Math.abs(x) < 2**31) {
     if (x > 0) {
       num = +numStr.reverse().join('');
     } else { 

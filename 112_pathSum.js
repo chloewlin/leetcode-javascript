@@ -29,6 +29,11 @@ var hasPathSum = function(root, sum) {
   return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
 }
 
+// One-liner
+var hasPathSum = function(root, sum) {
+  return root !== null && ((root.left || root.right) ? hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val) : sum === root.val);
+}
+
 var node = new TreeNode(5);
 node.left = new TreeNode(4);
 node.right = new TreeNode(8);

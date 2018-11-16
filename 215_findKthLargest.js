@@ -15,8 +15,8 @@
 var BinaryHeap = function() {
   this._heap = [];
   this._compare = function (i, j) { 
-    if (!i) return j;
-    if (!j) return i;
+    if (i === undefined) return j;
+    if (j === undefined) return i;
     return i < j;
   };
 }
@@ -86,7 +86,8 @@ var findKthLargest = function(nums, k) {
   return minHeap.removeRoot();
 };
 
-console.log('result ---------->', findKthLargest([3,2,1,5,6,4], 2)); // 5
-console.log('result ---------->', findKthLargest([3,2,3,1,2,4,5,5,6], 4)); // 4
-console.log('result ---------->', findKthLargest([3,2,3,1,2,4,5,5,6], 9)) // 1
-console.log('result ---------->', findKthLargest([3,2,1,4], 2)) // 3
+// console.log(findKthLargest([3,2,1,5,6,4], 2)); // 5
+// console.log(findKthLargest([3,2,3,1,2,4,5,5,6], 4)); // 4
+// console.log(findKthLargest([3,2,3,1,2,4,5,5,6], 9)) // 1
+// console.log(findKthLargest([3,2,1,4], 2)) // 3
+// console.log(findKthLargest([-1,2,0], 2)) // 0

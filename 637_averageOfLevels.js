@@ -17,16 +17,21 @@ function TreeNode(val) {
 
 let averageOfLevels = function(root) {
   let averages = [];
-  let queue = [root];
+  let queue = [[root, 0]];
 
   while (queue.length > 0) {
-    let curr = queue.shift();
-    averages.push(curr.val);
-    if (curr.left) queue.push(curr.left);
-    if (curr.right) queue.push(curr.right);
+    let [curr, level] = queue.shift();
+    if (curr.left) queue.push([curr.left, level + 1]);
+    if (curr.right) queue.push([curr.right, level + 1]);
+    if (!averages[level]) averages[level] = [];
+    averages[level].push(curr.val);
   }
 
-  return averages;
+  return averages.map((level) => {
+    let length = level.length;
+    let sumOfLevel = level.reduce((a, b) => (a + b));
+    return sumOfLevel/length;
+  });
 };
 
 var newTree = new TreeNode(3);

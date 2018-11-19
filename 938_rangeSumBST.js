@@ -18,22 +18,30 @@ function TreeNode(val) {
   this.left = this.right = null;
 }
 
-// Recursive solution
-let rangeSumBST = function(root, L, R) {
-  let sum = 0;
-  let traverseTree = function(root, L, R) {
-    if (!root) return;
-    if (root.val >= L && root.val <= R) {
-      sum += root.val;
-    }
-    if (root.val < L) return traverseTree(root.right, L, R);
-    if (root.val > R) return traverseTree(root.left, L, R);
-    if (root.left) traverseTree(root.left, L, R);
-    if (root.right) traverseTree(root.right, L, R);
-  }
-  traverseTree(root, L, R);
+// Recursive solution with inner recursive function
+// let rangeSumBST = function(root, L, R) {
+  // let sum = 0;
+  // let traverseTree = function(root, L, R) {
+  //   if (!root) return;
+  //   if (root.val >= L && root.val <= R) {
+  //     sum += root.val;
+  //   }
+  //   if (root.val < L) return traverseTree(root.right, L, R);
+  //   if (root.val > R) return traverseTree(root.left, L, R);
+  //   if (root.left) traverseTree(root.left, L, R);
+  //   if (root.right) traverseTree(root.right, L, R);
+  // }
+  // traverseTree(root, L, R);
 
-  return sum;
+  // return sum;
+// };
+
+// Optimized recursive solution 
+let rangeSumBST = function(root, L, R) {
+  if (!root) return 0;
+  if (root.val < L) return rangeSumBST(root.right, L, R);
+  if (root.val > R) return rangeSumBST(root.left, L, R);
+  return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
 };
 
 let tree = new TreeNode(10);

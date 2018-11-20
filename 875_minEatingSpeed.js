@@ -28,26 +28,45 @@
 
 // **************************************************************************************************// 
 
-// Solution 1:  Brute force
-let minEatingSpeed = function(piles, H) {
-  for (let k = Math.min(...piles); k <= Math.max(...piles); k++) {
-    let hoursLeft = H;
+// Solution 1: Brute force
+// let minEatingSpeed = function(piles, H) {
+//   for (let k = Math.min(...piles); k <= Math.max(...piles); k++) {
+//     let hoursLeft = H;
 
-    for (let currPile = 0; currPile < piles.length; currPile++) {
-      let hoursPerPile = Math.ceil(piles[currPile] /k);
-      hoursLeft -= hoursPerPile; 
+//     for (let currPile = 0; currPile < piles.length; currPile++) {
+//       let hoursPerPile = Math.ceil(piles[currPile] /k);
+//       hoursLeft -= hoursPerPile; 
 
-      if (hoursLeft < 0) {
-        continue;
-      }
+//       if (hoursLeft < 0) {
+//         continue;
+//       }
   
-      if (currPile === piles.length - 1 && hoursLeft === 0) {
-        return k;
+//       if (currPile === piles.length - 1 && hoursLeft === 0) {
+//         return k;
+//       }
+//     }
+//   }
+// };
+
+// Solution 2: Binary Search
+// Time Complexity: O(n log w) - n = number of piles; w = max size of a pile
+let minEatingSpeed = function(piles, H) {
+  const max = Math.max(...piles);
+  let start = 0, end = max, res = max;
+
+  while (start <= end) {
+      var mid = Math.floor((end - start) / 2) + start;
+      
+      for (var i = 0, hours = 0; i < piles.length; i++) hours += Math.ceil(piles[i] / mid);
+      if (hours > H) start = mid + 1;
+      else {
+        if (mid < res) res = mid;
+        end = mid - 1;
       }
-    }
   }
+  return res;
 };
 
-console.log(minEatingSpeed([3,6,7,11], 8)); // k = 4
-console.log(minEatingSpeed([30,11,23,4,20], 5)); // k = 30
-console.log(minEatingSpeed([30,11,23,4,20], 6)); // k = 23
+// console.log(minEatingSpeed([3,6,7,11], 8)); // k = 4
+// console.log(minEatingSpeed([30,11,23,4,20], 5)); // k = 30
+// console.log(minEatingSpeed([30,11,23,4,20], 6)); // k = 23

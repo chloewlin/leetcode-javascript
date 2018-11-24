@@ -19,18 +19,15 @@ function TreeNode(val) {
 
 var diameterOfBinaryTree = function(root) {
   var diameter = 0;
-  if (!root) return 0;
 
-  var findDeepestLevel = function(root, level) {
-    if (!root.left && !root.right) return 0;
-    var left = 0;
-    var right = 0;
-    if (root.left) left = findDeepestLevel(root.left) + 1;
-    if (root.right) right = findDeepestLevel(root.right) + 1;  
+  var DFS = function(node) {
+    if (!node) return 0;
+    var left = DFS(node.left);
+    var right = DFS(node.right);  
     diameter = Math.max(diameter, left + right);
-    return Math.max(left, right);
+    return Math.max(left, right) + 1;
   };
-  findDeepestLevel(root);
+  DFS(root);
   
   return diameter;
 };

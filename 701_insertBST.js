@@ -37,28 +37,30 @@ function TreeNode(val) {
 
 // Solution 1: recursive
 // Time Complexity: O(logN)
-// var insertIntoBST = function(root, val) {
-//   if (val > root.val) {
-//     if (root.right) {
-//       insertIntoBST(root.right, val);
-//     } else {
-//       root.right = new TreeNode(val);
-//     }
-//   } else if (val < root.val) {
-//     if (root.left) {
-//       insertIntoBST(root.left, val);
-//     } else {
-//       root.left = new TreeNode(val);
-//     }
-//   }
-//   return root;
-// };
+// Space Complexity: constant
+var insertIntoBST = function(root, val) {
+  if (val > root.val) {
+    if (root.right) {
+      insertIntoBST(root.right, val);
+    } else {
+      root.right = new TreeNode(val);
+    }
+  } else if (val < root.val) {
+    if (root.left) {
+      insertIntoBST(root.left, val);
+    } else {
+      root.left = new TreeNode(val);
+    }
+  }
+  return root;
+};
 
 // Solution 2: Iterative
 // Time Complexity: O(logN)
+// Space Complexity: constant
 var insertIntoBST = function(root, val) {
   var node = root;
-  while (1) {
+  while (true) {
     if (val > node.val) {
       if (node.right) {
         node = node.right;
@@ -80,7 +82,6 @@ var insertIntoBST = function(root, val) {
 
   return root;
 };
-
 
 var tree = new TreeNode(4);
 tree.left = new TreeNode(2);

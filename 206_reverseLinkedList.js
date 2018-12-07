@@ -14,6 +14,8 @@ function ListNode(val) {
 };
 
 // Solution 1: iterative
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 var reverseList = function(head) {
   var prev = null;
   var curr = head;
@@ -27,6 +29,20 @@ var reverseList = function(head) {
  
   return prev;
 };
+
+// Solution 2: recursive
+// Time Complexity: O(n)
+// Space Complexity: O(n) 
+var reverseList = function(head) {
+  if (head === null || head.next === null) {
+    return head;
+  }
+  var newList = reverseList(head.next);
+  head.next.next = head;
+  head.next = null;
+  return newList;
+};
+
 
 var node = new ListNode(1);
 node.next = new ListNode(2);

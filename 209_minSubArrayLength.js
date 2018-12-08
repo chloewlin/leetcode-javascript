@@ -18,6 +18,28 @@ var minSubArrayLen = function(s, nums) {
   return min;
 };
 
+// Solution 2: 
+var minSubArrayLen = function(s, nums) {
+  var sums = [0];
+  
+  // calculate all the possible sums: [0, 2, 5, 6, 8, 12, 15]
+  for (var k of nums) {
+    sums.push(sums[sums.length - 1] + k);
+  }
+
+  var min = Infinity;
+
+  // find the min length of contiguous subarray
+  for (var i = 0, j = 1; j < sums.length; j++) {
+    while (sums[j] - sums[i] >= s) {
+      min = Math.min(min, j - i);
+      i++;
+    }
+  }
+
+  return min === Infinity ? 0 : min; 
+};
+
 console.log(minSubArrayLen(7, [2,3,1,2,4,3])); // return 2
 // the subarray [4, 3] has the minimal length under the problem constraint
 // possible subarray with sum greater than or equal to 7: 

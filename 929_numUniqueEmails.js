@@ -31,22 +31,15 @@
 
 // Solution: Brute Force
 var numUniqueEmails = function(emails) {
-  var count = {};
-  for (var i = 0; i < emails.length; i++) {
-    var email = emails[i];
-    for (var j = 0; j < email.length; j++) {
-      if (email[j] === '@') {
-        var local = email.slice(0, j).replace(/\./g, '');  // remove the dots;
-        var firstPlus = local.indexOf('+');
-        var newLocal = local.slice(0, firstPlus);  // remove everything after plus
-        var newMail = newLocal + email.slice(j) // generate new email
-        // console.log(newLocal);
-        if (!count[newMail]) {
-          count[newMail] = 1;
-        } 
-      }
-    }
-  }
+  let count = {};
+  
+  emails.forEach((email) => {
+    let [local, domain] = email.split('@');
+    local = local.replace(/\./g, '');
+    const firstPlus = local.indexOf('+');
+    if (firstPlus !== -1) local = local.substr(0, firstPlus);
+    count[`${local}@${domain}`] = count[`${local}@${domain}`] + 1 || 1 ;
+  });
   
   return Object.keys(count).length;
 };

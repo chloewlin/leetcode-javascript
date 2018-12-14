@@ -45,11 +45,47 @@ var kthSmallest = function(root, k) {
   return nodes[k-1];
 };
 
-var root = new TreeNode(5);
-root.left = new TreeNode(3);
-root.right = new TreeNode(6);
-root.left.left = new TreeNode(2);
-root.left.right = new TreeNode(4);
-root.left.left.left = new TreeNode(1);
-console.log(root);
-console.log(kthSmallest(root, 3));
+// Solution 2: recursion - ES6
+let kthSmallest = (root, k) => {  
+  return convertBTtoArray(root)[k - 1];
+};
+
+let convertBTtoArray = (node) => {
+  if (!node) return [];
+  return [...convertBTtoArray(node.left), node.val, ...convertBTtoArray(node.right)];
+};
+
+// Solution 3: iterative
+let kthSmallest = (root, k) => {
+  let stack = [];
+  let count = 0;
+  let node = root;
+  
+  while (true) {
+    if (node) {
+      stack.push(node);
+      node = node.left;
+    } else {
+      if (stack.length === 0) break;
+      node = stack.pop();
+      count++;
+      if (count === k) return node.val;
+      node = node.right;
+    }
+  }
+};
+
+var tree1 = new TreeNode(5);
+tree1.left = new TreeNode(3);
+tree1.right = new TreeNode(6);
+tree1.left.left = new TreeNode(2);
+tree1.left.right = new TreeNode(4);
+tree1.left.left.left = new TreeNode(1);
+
+var tree2 = new TreeNode(3);
+tree2.left = new TreeNode(1);
+tree2.right = new TreeNode(4);
+tree2.left.right = new TreeNode(2);
+
+// console.log(kthSmallest(tree1, 3)); // 3
+console.log(kthSmallest(tree2, 2)); // 2

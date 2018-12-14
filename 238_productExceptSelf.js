@@ -16,12 +16,14 @@
 var productExceptSelf = function(nums) {
   let result = [];
   let productOnTheLeft = 1, productOnTheRight = 1;
-
+  
+  // Calculate the products from the left up to num[i]
   for (let i = 0; i < nums.length; i++) {
     result[i] = productOnTheLeft;
     productOnTheLeft *= nums[i]; 
   }
 
+  // Then calculate the products from the right up to num[i]
   for (let i = nums.length - 1; i >= 0; i--) {
     result[i] *= productOnTheRight;
     productOnTheRight *= nums[i];

@@ -29,14 +29,15 @@ const frequencySort = (s) => {
   let arr = [...s];
   let count = {};
   let result = '';
-
+  
+  // O(n)
   for (let i = 0; i < arr.length; i++) {
     count[arr[i]] = count[arr[i]] + 1 || 1;
   }
   
-  // sort count object by frequency
+  // sort count object by frequency - O(nlogn)
   Object.keys(count).sort((a,b) => count[b] - count[a]).forEach(function(v){
-    for (var j = 0; j < count[v]; j++) {
+    for (var j = 0; j < count[v]; j++) { // O(n)
       result += v;
     }
   });
@@ -44,11 +45,17 @@ const frequencySort = (s) => {
   return result;
 };
 
-// Solution 2: ES6 
-var frequencySort = (s) => {
+// // Solution 2: ES6 
+const frequencySort = (s) => {
   let obj = {};
   [...s].forEach(c => obj[c] = obj[c] + 1 || 1);
   return [...s].sort((a, b) => obj[b] == obj[a] ? a.charCodeAt(0) - b.charCodeAt(0): obj[b] - obj[a]).join("");
+};
+
+// Solution 3: Map
+const frequencySort = (s) => {
+  const map = [...s].reduce((map, char) => map.set(char, map.has(char) ? map.get(char) + char: char), new Map());
+  return Array.from(map.values()).sort((a,b) => b.length - a.length).reduce((str, char) => str += char, '');
 };
 
 console.log(frequencySort("tree")); // "eert"

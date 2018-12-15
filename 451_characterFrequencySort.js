@@ -24,6 +24,7 @@
 // "bbaA" is also a valid answer, but "Aabb" is incorrect.
 // Note that 'A' and 'a' are treated as two different characters.
 
+// Solution 1: 
 const frequencySort = (s) => {
   let arr = [...s];
   let count = {};
@@ -32,7 +33,7 @@ const frequencySort = (s) => {
   for (let i = 0; i < arr.length; i++) {
     count[arr[i]] = count[arr[i]] + 1 || 1;
   }
-
+  
   // sort count object by frequency
   Object.keys(count).sort((a,b) => count[b] - count[a]).forEach(function(v){
     for (var j = 0; j < count[v]; j++) {
@@ -43,6 +44,14 @@ const frequencySort = (s) => {
   return result;
 };
 
+// Solution 2: ES6 
+var frequencySort = (s) => {
+  let obj = {};
+  [...s].forEach(c => obj[c] = obj[c] + 1 || 1);
+  return [...s].sort((a, b) => obj[b] == obj[a] ? a.charCodeAt(0) - b.charCodeAt(0): obj[b] - obj[a]).join("");
+};
+
 console.log(frequencySort("tree")); // "eert"
 console.log(frequencySort("cccaaa")); // "cccaaa" or "aaaccc"
 console.log(frequencySort("Aabb")); // "bbAa" or "bbaA"
+console.log(frequencySort("loveleetcode")); // "eeeeloolvtcd", should be "eeeeoollvtdc"

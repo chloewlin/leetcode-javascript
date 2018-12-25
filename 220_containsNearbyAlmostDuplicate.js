@@ -15,8 +15,11 @@
 // Output: false
 
 // Naive solution: 
+// Time Complexity: O(n * k)
+// Space Complexity: O(1)
 var containsNearbyAlmostDuplicate = function(nums, k, t) {
-  let count = {};
+  if (!nums || nums.length === 0 || k <= 0 || t < 0) return false;
+
   for (let i = 0; i < nums.length; i++) {
     for (let j = i + 1; j < nums.length; j++) {
       if (Math.abs(i - j) <= k && Math.abs(nums[i] - nums[j]) <= t) {
@@ -27,8 +30,12 @@ var containsNearbyAlmostDuplicate = function(nums, k, t) {
   return false;
 };
 
-// Solution: Sliding window
+// Solution: Sliding Window
+// Time Complexity: O(nlogk)
+// Space Complexity: O(1)
 var containsNearbyAlmostDuplicate = function(nums, k, t) {
+  if (!nums || nums.length === 0 || k <= 0 || t < 0) return false;
+
   // Sort the array by value
   const sortedArr = nums
     .map((val, idx) => ({ val, idx }))

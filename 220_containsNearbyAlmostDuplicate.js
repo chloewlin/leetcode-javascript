@@ -27,6 +27,33 @@ var containsNearbyAlmostDuplicate = function(nums, k, t) {
   return false;
 };
 
+// Solution: Sliding window
+var containsNearbyAlmostDuplicate = function(nums, k, t) {
+  // Sort the array by value
+  const sortedArr = nums
+    .map((val, idx) => ({ val, idx }))
+    .sort((a, b) => a.val - b.val);
+
+  let l = 0;
+  let r = 1;
+
+  while (r < sortedArr.length) {
+    const diff = Math.abs(sortedArr[r].val - sortedArr[l].val);
+    const indicesDiff = Math.abs(sortedArr[r].idx - sortedArr[l].idx);
+
+    // If diff and indicesDiff meet our conditions, return true
+    if (diff <= t && indicesDiff <= k) return true;
+    // If diff is greater t, increment left pointer to narrow the search
+    else if (diff > t) l++;
+    // If indices is greater, increment right pointer ro widen the search
+    else if (indicesDiff > k) r++;
+
+    if (l === r) r++;
+  }
+
+  return false;
+};
+
 console.log(containsNearbyAlmostDuplicate([1,2,3,1], 3, 0)); // true
 console.log(containsNearbyAlmostDuplicate([1,0,1,1], 1, 2)); // true
 console.log(containsNearbyAlmostDuplicate([1,5,9,1,5,9], 2, 3)); // false

@@ -28,4 +28,30 @@ var twoSum = function(numbers, target) {
   }
 };
 
+// Solution 2: Two Pointers
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+var twoSum = function(numbers, target) {
+  let left = 0;
+  let right = numbers.length - 1;
+
+  while (left < right) {
+    let sum = numbers[left] + numbers[right];
+    
+    // Return immediately when we find one pair
+    if (sum === target) {
+      return [left + 1, right + 1];
+    } else if (sum > target) {  // Move right pointer one step backward to reduce sum
+      right--;
+    } else if (sum < target) {  // Move left pointer one step forward to increase sum
+      left++;
+    }
+  }
+  
+  return null;
+};
+
 console.log(twoSum([2,7,11,15], 9)); // [1, 2]
+console.log(twoSum([2,7,11,15], 18)); // [2, 3]
+console.log(twoSum([1,2,3,5,7,9,11,15,18,29,30], 13)); // [2, 7]
+console.log(twoSum([1,2,7,11,14,16], 17)); // [1, 6]

@@ -23,29 +23,32 @@ var minWindow = function(s, t) {
   // Iterate over s to find the shortest substring containing chars in t 
   let count = Object.keys(hash).length;
   let left = 0;
-  let right = -1;
+  let right = -1; 
 
-  while (right < s.length + 1) {
+  while (right < s.length) {
     if (count > 0) {
+      // Slide the window to the right
+      // When we add one char we've seen in hash to our string, decrement it in hash by 1
+      // When a char's value is 0 in hash, it means we don't need to look for it in S anymore
+      right++;
       if (hash[s[right]] !== undefined) hash[s[right]]--; 
       if (hash[s[right]] === 0) count--;
-      right++;
-      console.log('-->', hash[s[right]])
-      console.log('right:', hash, s[right], count, s.substr(left, right + 1));
+      // console.log('right:', hash);
     } 
 
     // When count === 0, we've found a valid string
     if (count === 0) { 
-      // Record the current minimal window
+      // Update the current minimal window
       if (!answer || right - left < answer.length) {
         answer = s.slice(left, right + 1);
         console.log(answer);
       }
 
+      // Slide the window from the left
+      // When we remove one char we've seen in hash, increment it in hash by 1
+      // When a char's value is more than 0 in hash, it means we still need it in S
       if (hash[s[left]] !== undefined) hash[s[left]]++;
       if (hash[s[[left]]] > 0) count++;
-    
-      console.log('left:', hash, s[left], count, s.substr(left, right + 1));
       left++;
     }
   }

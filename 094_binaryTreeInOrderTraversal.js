@@ -47,6 +47,16 @@ var inorderTraversal2 = function(root, res = []) {
   return res;
 };
 
+// Solution 2: Pure Recursive Function
+var inorderTraversal3 = function(root, res = []) {
+  if (!root) return res;
+  let left, right;
+  if (root.left) left = inorderTraversal3(root.left, res);
+  res.push(root.val);
+  if (root.right) right = inorderTraversal3(root.right, res);
+  return res;
+};
+
 let t = new TreeNode(1);
 t.left = new TreeNode(2);
 t.right = new TreeNode(3);

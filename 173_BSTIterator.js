@@ -49,6 +49,29 @@ BSTIterator.prototype.hasNext = function() {
   return this.queue.length !== 0;   
 };
 
+// Solution 2: 
+// Iterative, in-order traversal
+var BSTIterator2 = function(root) {
+  this.stack = [];
+  this.root = root;
+};
+
+BSTIterator2.prototype.next = function() {
+  while (this.root !== null) {
+    this.stack.push(this.root);
+    this.root = this.root.left;
+  }
+
+  this.root = this.stack.pop();
+  let res = this.root.val;
+  this.root = this.root.right;
+  return res;
+};
+
+BSTIterator2.prototype.hasNext = function() {
+  return this.stack.length !== 0 || this.root !== null;   
+};
+
 let t = new TreeNode(1);
 t.left = new TreeNode(2);
 t.right = new TreeNode(3);
@@ -56,7 +79,7 @@ t.right.left = new TreeNode(4);
 t.right.right = new TreeNode(5);
 
 // [2, 1, 4, 3, 5 ]
-let i = new BSTIterator(t);
+let i = new BSTIterator2(t);
 console.log(i.next()); // 2
 console.log(i.next()); // 1
 console.log(i.hasNext()); // true

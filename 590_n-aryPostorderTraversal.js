@@ -23,7 +23,7 @@ var postorder = function(root) {
 
   let traverse = (root) => {
     if (!root) return;
-    root.children.map((child) => traverse(child));
+    root.children.forEach((child) => traverse(child));
     values.push(root.val);
   }
   traverse(root);

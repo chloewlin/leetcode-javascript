@@ -25,7 +25,7 @@ var preorder = function(root) {
   let traverse = (root) => {
     if (!root) return;
     values.push(root.val);
-    root.children.map((child) => traverse(child));
+    root.children.forEach((child) => traverse(child));
   }
   traverse(root);
 

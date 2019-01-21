@@ -2,11 +2,11 @@
 
 // For example, given a 3-ary tree:
 
-//  //      1
-//  //   /  |  \
-//  //  3   2   4
-// //  / \
-// // 5   6
+//      1
+//   /  |  \
+//  3   2   4
+//  / \
+// 5   6
 
 // Return its preorder traversal as: [1,3,5,6,2,4].
 
@@ -18,7 +18,7 @@ function Node(val,children) {
   this.children = children;
 };
 
-// Recursive solution
+// Solution 1: Recursive
 var preorder = function(root) {
   let values = [];
 
@@ -32,6 +32,22 @@ var preorder = function(root) {
   return values;
 };
 
+// Solution 2: Iterative 
+var preorderIterative = function(root) {
+  let res = [];
+  let stack = [root];
+
+  while (stack.length) {
+    let current = stack.pop();
+    res.push(current.val);
+    for (let i = current.children.length - 1; i >= 0; i--) {
+      stack.push(current.children[i]);
+    }
+  }
+
+  return res;
+};
+
 // Test
 let t = new Node(1, []);
 t.children.push(new Node(3, []));
@@ -39,6 +55,7 @@ t.children.push(new Node(2, []));
 t.children.push(new Node(4, []));
 t.children[0].children.push(new Node(5, []));
 t.children[0].children.push(new Node(6, []));
-console.log(t);
+// console.log(t);
 
-console.log(preorder(t)); // [1,3,5,6,2,4]
+// console.log(preorder(t)); // [1,3,5,6,2,4]
+// console.log(preorderIterative(t)); // [1,3,5,6,2,4]

@@ -9,7 +9,6 @@
 //    / \
 //   5   6
 
-
 // We should return its level order traversal:
 
 // [
@@ -28,7 +27,7 @@ function Node(val,children) {
   this.children = children;
 };
 
-// Recursive Solution
+// Solution 1: Recursive 
 // Time Complexity: O(n)
 const levelOrder = (root) => {
   let res = [];
@@ -44,14 +43,38 @@ const levelOrder = (root) => {
   return res;
 };
 
-// Test
+// Solution 2: Iterative 
+// Time Complexity: O(n)
+var levelOrderIterative = function(root) {
+  if (!root) return []; // Edge case
+  let res = [];
+  let queue = [[root, 0]];
+
+  while (queue.length) {
+    let currentNode = queue.shift();
+    let level = currentNode[1];
+
+    if (!res[level]) res[level] = [];
+    res[level].push(currentNode[0].val);
+
+    for (let i = 0; i < currentNode[0].children.length; i++) {
+      queue.push([currentNode[0].children[i], level + 1]);
+    }
+  }
+
+  return res;
+};
+
+// Tests
 let t = new Node(1, []);
 t.children.push(new Node(3, []));
 t.children.push(new Node(2, []));
 t.children.push(new Node(4, []));
 t.children[0].children.push(new Node(5, []));
 t.children[0].children.push(new Node(6, []));
-// console.log(t);
 
-console.log(levelOrder()); // []
-console.log(levelOrder(t)); // [[1],[3,2,4],[5,6]]
+// console.log(t);
+// console.log(levelOrder()); // []
+// console.log(levelOrder(t)); // [[1],[3,2,4],[5,6]]
+// console.log(levelOrderIterative()); // []
+// console.log(levelOrderIterative(t)); // [[1],[3,2,4],[5,6]]

@@ -52,6 +52,7 @@ function TreeNode(val) {
   this.left = this.right = null;
 };
 
+// Time Complexity: O(n) 
 var boundaryOfBinaryTree = function(root) {
   if (!root) return [];
   let left = [], bottom = [], right = [];
@@ -60,6 +61,7 @@ var boundaryOfBinaryTree = function(root) {
     left.push(root.val);
   }
 
+  // Find all the nodes on the left
   const traverseLeft = (root) => {
     if (!root) return;
     left.push(root.val);
@@ -68,7 +70,7 @@ var boundaryOfBinaryTree = function(root) {
   }
   if (root.left) traverseLeft(root.left);
   
-
+  // Find all the nodes at the bottom
   const traverseBottom = (root) => {
     if (!root) return;
     if (!root.left && !root.right) {
@@ -79,6 +81,7 @@ var boundaryOfBinaryTree = function(root) {
   }
   traverseBottom(root);
 
+  // Find all the nodes on the right
   const traverseRight = (root) => {
     if (!root) return;
     right.push(root.val);
@@ -93,13 +96,14 @@ var boundaryOfBinaryTree = function(root) {
   if (leftCorner === bottomLeft) bottom.shift();
 
   // Check lower right corner and remove duplicates
-  let bottomRight = [...bottom].pop();
   let rightCorner = [...right].pop();
-  if (bottomRight === rightCorner) right.pop();
+  let bottomRight = [...bottom].pop();
+  if (rightCorner === bottomRight) right.pop();
 
-  return [...left, ...bottom, ...right.reverse()];
+  return [...left, ...bottom, ...right.reverse()]; // Reverse the right array to create anti-clockwise order
 };
 
+// Tests
 let t1 = new TreeNode(1);
 t1.right = new TreeNode(2);
 t1.right.left = new TreeNode(3);

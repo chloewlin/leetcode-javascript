@@ -15,12 +15,14 @@ function TreeNode(val) {
   this.left = this.right = null;
 };
 
+// Solution 1: Pure recursion
 var sumOfLeftLeaves = function(root, isLeft = false) {
   if (!root) return 0;
   if (!root.left && !root.right) return isLeft ? root.val : 0;
   return sumOfLeftLeaves(root.left, true) + sumOfLeftLeaves(root.right, false);
 };
 
+// Solution 2: Inner recursion
 var sumOfLeftLeaves1 = (root) => {
   let all = 0;
 
@@ -35,6 +37,20 @@ var sumOfLeftLeaves1 = (root) => {
   sum(root);
 
   return all;
+}
+
+// Solution 3: Iterative (Use stack)
+var sumOfLeftLeavesIterative = root => {
+  let sum = 0;
+  if (!root) return 0;
+  const stack = [[root, false]];
+  while (stack.length) {
+      var curr = stack.pop();
+      if (!curr[0].left && !curr[0].right) sum += curr[1] ? curr[0].val : 0;
+      if (curr[0].left) stack.push([curr[0].left, true]);
+      if (curr[0].right) stack.push([curr[0].right, false]);
+  }
+  return sum;
 }
 
 let t = new TreeNode(3);
@@ -58,5 +74,7 @@ t1.left.right = new TreeNode(5);
 console.log(sumOfLeftLeaves()); // 0
 console.log(sumOfLeftLeaves(t)); // 9 + 15 = 24
 console.log(sumOfLeftLeaves(t1)); // 4 
-console.log(sumOfLeftLeaves1(t)); // 9 + 15 = 24
+console.log(sumOfLeftLeaves1(t)); // 24
 console.log(sumOfLeftLeaves1(t1)); // 4 
+console.log(sumOfLeftLeavesIterative(t)); // 24
+console.log(sumOfLeftLeavesIterative(t1)); // 4

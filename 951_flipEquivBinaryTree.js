@@ -32,6 +32,9 @@ function TreeNode(val) {
 };
 
 // Recursive solution
+// Note: the key to understand this question is "some number of flip operations." We have to consider two situations: 
+// (1) when the left and right subtrees are not flipped, which means the subtrees stay the same (see first part of line 41)
+// (2) when the left and right subtrees are flipped (see second part of line 41)
 const flipEquiv = function(root1, root2) {
   if (!root1 && !root2) return true; 
   if (!root1 || !root2 || root1.val !== root2.val) return false; 

@@ -26,6 +26,13 @@
 // Recursive one liner
 const fib = N =>  N < 2 ? N : fib(N - 1) + fib(N - 2);
 
+// Recursive with memoization 
+const fib = (N, memo = {}) => {
+  if (N < 2) return N;
+  if (memo[N]) return memo[N];
+  return memo[N] = fib(N - 1, memo) + fib(N - 2, memo);
+};
+
 // Tests
 console.log(fib(1)); // 1
 console.log(fib(2)); // 1

@@ -14,11 +14,13 @@
 // 1 <= A.length <= 5000
 // 0 <= A[i] <= 5000
 
+// Time Complexity: O(nlogn)
+
 // Solution 1
 const comparator = (a, b) => {
-  if (a % 2 === 0 && b % 2 === 1) return -1;
-  if (b % 2 === 0 && a % 2 === 1) return 1;
-  return 0;
+  if (a % 2 === 0 && b % 2 === 1) return -1; // a (even number) comes before b (odd number)
+  if (b % 2 === 0 && a % 2 === 1) return 1; //  b (even number) comes before a (odd number)
+  return 0; // a, b remain unchanged
 };
 
 const sortArrayByParity = (A) => {
@@ -26,9 +28,10 @@ const sortArrayByParity = (A) => {
 };
 
 // Solution 2
-const comparator = (a, b) => {
+const sortArrayByParity2 = (A) => {
   return A.sort((a, b) => { return a % 2 - b % 2; }); 
 };
 
-// Test
+// Tests
 console.log(sortArrayByParity([3,1,2,4])); // [2,4,3,1]
+console.log(sortArrayByParity2([3,1,2,4])); // [2,4,3,1]

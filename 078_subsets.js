@@ -17,8 +17,23 @@
 //   []
 // ]
 
-var subsets = function(nums) {
+const subsets = (nums) => {
   return nums.reduce((subset, val) => subset.concat(subset.map(set => [val, ...set])), [[]]);
+};
+
+// DFS
+const subsets = (nums) => {
+  let res = [];
+  findSet([], 0);
+
+  function findSet(current, index) {
+    res.push(current);
+    for (let i = index; i < nums.length; i++) {
+      findSet(current.concat(nums[i]), i + 1);
+    }
+  } 
+
+  return res;
 };
 
 console.log(subsets([1,2,3]));

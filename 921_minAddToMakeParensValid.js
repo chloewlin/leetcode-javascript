@@ -29,7 +29,9 @@
 // S.length <= 1000
 // S only consists of '(' and ')' characters.
 
-var minAddToMakeValid = function(S) {
+// Solution 1: 
+// O(n) time, O(n) space
+const minAddToMakeValid = function(S) {
   let num = 0;
   let stack = [];
 
@@ -47,7 +49,37 @@ var minAddToMakeValid = function(S) {
   return stack.length === 0 ? num : stack.length + num;
 };
 
-console.log(minAddToMakeValid('())')); // 1
-console.log(minAddToMakeValid('(((')); // 3
-console.log(minAddToMakeValid('()')); // 0
-console.log(minAddToMakeValid('()))((')); // 4
+// Solution 2
+// O(n) time, O(1) space
+const minAddToMakeValid2 = (S) => {
+  let total = 0;
+  let prevOpening = 0;
+
+  for (let i = 0; i < S.length; i++) {
+    if (S[i] === '(') {
+      total++;
+      prevOpening++;
+    } else {
+      if (prevOpening > 0) {
+        total--;
+        prevOpening--;
+      } else {
+        total++;
+      }
+    }
+  }
+
+  return total;
+};
+
+
+// Tests
+// console.log(minAddToMakeValid('())')); // 1
+// console.log(minAddToMakeValid('(((')); // 3
+// console.log(minAddToMakeValid('()')); // 0
+// console.log(minAddToMakeValid('()))((')); // 4
+
+// console.log(minAddToMakeValid2('())')); // 1
+// console.log(minAddToMakeValid2('(((')); // 3
+// console.log(minAddToMakeValid2('()')); // 0
+// console.log(minAddToMakeValid2('()))((')); // 4

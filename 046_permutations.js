@@ -12,6 +12,7 @@
 //   [3,2,1]
 // ]
 
+// Solution 1: 
 const permute = function(nums) { 
   let res = [];
 
@@ -31,6 +32,27 @@ const permute = function(nums) {
   return res;  
 };
 
-console.log(permute([1,2,3]));
-console.log(permute([1,2,3,4]));
-console.log(permute(['a','b','c']));
+// Solution 2: ES6
+const permute2 = (arr) => {
+  let res = [];
+
+  const generate = (curr, rest) => {
+    // console.log(curr, rest);
+    if (!rest.length) res.push(curr);
+
+    for (let i = 0; i < rest.length; i++) {
+      generate(
+        [...curr, rest[i]], 
+        [...rest.slice(0, i), ...rest.slice(i + 1)]
+      )
+    }
+  };
+  generate([], arr);
+
+  return res;
+};
+
+// Tests
+// console.log(permute([1,2,3]));
+// console.log(permute([1,2,3,4]));
+// console.log(permute(['a','b','c']));

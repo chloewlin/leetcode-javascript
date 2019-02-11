@@ -9,8 +9,8 @@
 // Could you do it without any loop/recursion in O(1) runtime?
 
 // Solution: recursively divide the number down until it only has one digit.
-var addDigits = function(num) {
-  let arr = [...num.toString()];   
+var addDigits1 = function(num) {
+  let arr = [...`${num}`];
 
   if (arr.length > 1) {
     let sum = 0;
@@ -19,6 +19,18 @@ var addDigits = function(num) {
   } else {
     return +arr[0];
   }
+};
+
+// Solution2: 
+var addDigits2 = (num) => {
+  let sum = 0;
+
+  [...`${num}`].forEach(n => {
+    sum += +n;
+    sum = sum >= 10 ? (sum % 10) + 1 : sum;
+  });
+
+  return sum;
 };
 
 // Tests

@@ -11,7 +11,7 @@ var maxSubArray = function(nums) {
 
 // Time Complexity: O(n)
 // Faster runtime
-var maxSubArray = function(nums) {
+var maxSubArray2 = function(nums) {
   let sum = 0, max = nums[0];
   for (let i = 0; i < nums.length; i++) {
     sum += nums[i];
@@ -21,7 +21,28 @@ var maxSubArray = function(nums) {
   return max;
 };
 
-console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // 6
-console.log(maxSubArray([-2])); // -2
-console.log(maxSubArray([-1, -2])); // -1
-console.log(maxSubArray([1])); // 1
+// Brute Force: worse than O(n2) time
+const maxSubArray3 = (nums) => {
+  let largestSum = nums[0];
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      let currArr = nums.slice(i, j);
+      let currSum = currArr.reduce((a, b) => a + b, 0);
+      if (currSum > largestSum) {
+        largestSum = currSum;
+      }
+    }
+  }
+
+  return largestSum;
+};
+
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // 6
+// console.log(maxSubArray([-2])); // -2
+// console.log(maxSubArray([-1, -2])); // -1
+// console.log(maxSubArray([1])); // 1
+// console.log(maxSubArray3([-2,1,-3,4,-1,2,1,-5,4])); // 6
+// console.log(maxSubArray3([-2])); // -2
+// console.log(maxSubArray3([-1, -2])); // -1
+// console.log(maxSubArray3([1])); // 1

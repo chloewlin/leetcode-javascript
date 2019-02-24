@@ -22,8 +22,6 @@ var transpose = function(matrix) {
 
   for (let i = 0; i < matrix[0].length; i++) {
     if (!res[i]) res[i] = [];
-  }
-  for (let i = 0; i < matrix[0].length; i++) {
     for (let j = 0; j < matrix.length; j++) {
       res[i].push(matrix[j][i]);
     }

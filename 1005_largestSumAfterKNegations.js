@@ -25,22 +25,14 @@
 // 1 <= K <= 10000
 // -100 <= A[i] <= 100
 
-// find and flip the smallest k numbers (except: same index is okay)
+// find and flip the smallest number K times 
+// Note: Do NOT flip the smallest K numbers!
 var largestSumAfterKNegations = function(A, K) {
-  // sort array from smallest to largest
-  A = A.sort((a, b) => a - b);
-
-  for (let i = 0; i < A.length; i++) {
-    if (K > 0) {
-      A[i] = -A[i];
-      K--;
-    }
-    if (A[i] === 0) {
-      A[i] = -A[i];
-      break;
-    }
+  for (let i = 0; i < K; i++) {
+    let minIndex = A.indexOf(Math.min(...A));
+    A[minIndex] = -A[minIndex];
   }
-
+  
   return A.reduce((a,b) => a + b, 0);
 };
 
@@ -48,4 +40,5 @@ var largestSumAfterKNegations = function(A, K) {
 console.log(largestSumAfterKNegations([4,2,3], 1)); // 5
 console.log(largestSumAfterKNegations([3,-1,0,2], 3)); // 6
 console.log(largestSumAfterKNegations([2,-3,-1,5,-4], 2)); // 13
-console.log(largestSumAfterKNegations([-2,9,9,8,4], 5)); // Should be 32
+console.log(largestSumAfterKNegations([-2,9,9,8,4], 5)); // 32
+console.log(largestSumAfterKNegations([5,6,9,-3,3], 2)); // 20

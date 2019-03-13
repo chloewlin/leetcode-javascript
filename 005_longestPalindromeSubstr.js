@@ -10,13 +10,14 @@
 // Input: "cbbd"
 // Output: "bb"
 
-let isPalindrome = function(str) {
-  const originalStr = str.toLowerCase();
-  const reversedStr = str.toLowerCase().split('').reverse().join('');
-  return originalStr === reversedStr ? true : false;
-}
-// console.log(isPalindrome("Hannah"));
+// O(n) time
+// let isPalindrome = function(str) {
+//   const originalStr = str.toLowerCase();
+//   const reversedStr = str.toLowerCase().split('').reverse().join('');
+//   return originalStr === reversedStr ? true : false;
+// }
 
+// O(n3) time
 let longestPalindrome = function(str) {
   let palindromes = [];
 
@@ -31,7 +32,7 @@ let longestPalindrome = function(str) {
       }
     }
   }
-  console.log(palindromes);
+
   let maxLength = 0;
   let max = null;
   for (let i = 0; i < palindromes.length; i++) {
@@ -40,11 +41,14 @@ let longestPalindrome = function(str) {
       max = palindromes[i].substr;
     }
   }
-  console.log(maxLength);
-  console.log(max);
+  
   return max;
+};
+
+var longestPalindrome = function(s) {
+  
 };
 
 console.log(longestPalindrome("babad")); // "bab"
 console.log(longestPalindrome("cbbd")); // "bb"
-console.log(longestPalindrome(""));
+console.log(longestPalindrome("")); // ""

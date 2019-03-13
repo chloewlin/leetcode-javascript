@@ -40,4 +40,4 @@ tree.left.right = new TreeNode(5);
 tree.right.left = new TreeNode(6);
 tree.right.right = new TreeNode(7);
 
-console.log(preorderTraversal(tree));
+console.log(preorderTraversal(tree)); // [ 1, 2, 4, 5, 3, 6, 7 ]

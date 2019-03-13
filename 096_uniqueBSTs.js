@@ -14,7 +14,11 @@
 //    2     1         2                 3
 
 var numTrees = function(n) {
-    
+  let nums = 0
+  
+  
+
+  return nums;
 };
 
 console.log(numTrees(3)); // 5

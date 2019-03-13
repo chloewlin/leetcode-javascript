@@ -42,6 +42,7 @@ node.left.left.left = new TreeNode(7);
 node.left.left.right = new TreeNode(2);
 node.right.left = new TreeNode(13);
 node.right.right = new TreeNode(4);
+node.right.right.left = new TreeNode(5);
 node.right.right.right = new TreeNode(1);
 // console.log(node);
 console.log(hasPathSum(node, 22)); // true

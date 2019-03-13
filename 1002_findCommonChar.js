@@ -35,3 +35,18 @@ var commonChars = function(A) {
 // Tests
 console.log(commonChars(["bella","label","roller"])); //  ["e","l","l"]
 console.log(commonChars(["cool","lock","cook"])); // ["c","o"]
+
+let a = [1, 2, 3];
+let b = [145, 1789, 1000];
+
+for (let i = 1; i < b.length; i++) {
+  let currNum = [...b[i].toString()].map(w => +w);
+  
+  a = a.filter(a => {
+    let idx = currNum.indexOf(a);
+    return idx > -1 ? currNum[idx] = true : false;
+  });
+  console.log(currNum);
+}
+
+console.log(a);

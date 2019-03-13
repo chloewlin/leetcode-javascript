@@ -21,6 +21,7 @@ function TreeNode(val) {
 };
 
 // Given that the input is guaranteed to be a complete tree, we can just count the nodes
+// But this solution does not have the best time complexity
 const countNodes = function(root) {
   if (!root) return 0; 
   return 1 + countNodes(root.left) + countNodes(root.right);

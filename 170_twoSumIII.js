@@ -55,26 +55,26 @@ TwoSum.prototype.find = function(value) {
  * var param_2 = obj.find(value)
  */
 
- var test = new TwoSum();
- test.add(2);
- test.add(7);
- test.add(11);
- test.add(5);
- console.log(test.find(9)); // true
- console.log(test.find(13)); // true
- console.log(test.find(17)); // false
+var test = new TwoSum();
+test.add(2);
+test.add(7);
+test.add(11);
+test.add(5);
+console.log(test.find(9)); // true
+console.log(test.find(13)); // true
+console.log(test.find(17)); // false
 
- var test1 = new TwoSum();
- test1.add(1);
- console.log(test.find(1)); // false
+var test1 = new TwoSum();
+test1.add(1);
+console.log(test.find(1)); // false
 
- var test2 = new TwoSum();
- test2.add("TwoSum");
- test2.add("add");
- test2.add("find");
- console.log(test2.find("")); // null;
- console.log(test2.find(0)); // null;
- console.log(test2.find("0")); // false;
+var test2 = new TwoSum();
+test2.add("TwoSum");
+test2.add("add");
+test2.add("find");
+console.log(test2.find("")); // null;
+console.log(test2.find(0)); // null;
+console.log(test2.find("0")); // false;
 
 // Edge case: when two numbers of the same value add up to sum 
 var test3 = new TwoSum();

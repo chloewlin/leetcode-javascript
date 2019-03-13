@@ -22,7 +22,7 @@
 // Example 5:
 // Input: "{[]}", Output: true
 
-// Solution: Using stack
+// Solution: Using stack 
 // Time complexity: O(n), n is the length of the input string
 // Space complexity: O(n)
 const isValid = (s) => {

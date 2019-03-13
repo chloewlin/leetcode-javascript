@@ -26,7 +26,8 @@
 // -10000 < points[i][1] < 10000
 
 // Solution 1: sort
-var kClosest = function(points, K) {
+// O(nlogn) time, O(n) space
+const kClosest = (points, K) => {
   let distances = [];
   for (let i = 0; i < points.length; i++) {
     let point = points[i];
@@ -46,6 +47,23 @@ var kClosest = function(points, K) {
   return res;
 };
 
+// Solution 2: Divide and Conquer/Quick Select
+// O(n) time
+const kClosest2 = (points, K) => {
+  quickSelect(points, K, 0, K.length - 1);
+};
+
+const quickSelect = (points, K, low, high) => {
+  if (low > high) return; 
+
+};
+
+const divide = (points, low, high) => {
+
+};
+
 // Tests
 console.log(kClosest([[1,3],[-2,2]], 1)); // [[-2,2]]
 console.log(kClosest([[3,3],[5,-1],[-2,4]], 2)); // [[3,3],[-2,4]]
+console.log(kClosest2([[1,3],[-2,2]], 1)); // [[-2,2]]
+console.log(kClosest2([[3,3],[5,-1],[-2,4]], 2)); // [[3,3],[-2,4]]

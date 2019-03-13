@@ -19,7 +19,7 @@ const TreeNode = function(val) {
 };
 
 // Solution 1: Inner Recursive Function
-var inorderTraversal1 = function(root) {
+const inorderTraversal1 = function(root) {
   let res = [];
 
   let findNode = function (node) {
@@ -34,7 +34,7 @@ var inorderTraversal1 = function(root) {
 };
 
 // We can also rewrite the above solution this way
-var inorderTraversal2 = function(root, res = []) {
+const inorderTraversal2 = function(root, res = []) {
   let findNode = function (node) {
     if (node) {
       node.left && findNode(node.left);
@@ -48,7 +48,7 @@ var inorderTraversal2 = function(root, res = []) {
 };
 
 // Solution 2: Pure Recursive Function
-var inorderTraversal3 = function(root, res = []) {
+const inorderTraversal3 = function(root, res = []) {
   if (!root) return res;
   let left, right;
   if (root.left) left = inorderTraversal3(root.left, res);
@@ -57,11 +57,30 @@ var inorderTraversal3 = function(root, res = []) {
   return res;
 };
 
+// Solution 3: Iterative Solution 
+const inorderTraversal4 = function(root) {
+  let stack = [];
+  let result = [];
+
+  while (root || stack.length) {
+    if (root) {
+      stack.push(root);
+      root = root.left;
+    } else {
+      root = stack.pop();
+      result.push(root.val);
+      root = root.right;
+    }
+  }
+
+  return result;
+};
+
 let t = new TreeNode(1);
 t.left = new TreeNode(2);
 t.right = new TreeNode(3);
 t.right.left = new TreeNode(4);
 t.right.right = new TreeNode(5);
 
-console.log(inorderTraversal3(t)); // [2, 1, 4, 3, 5 ]
-console.log(inorderTraversal3()); // []
+console.log(inorderTraversal4(t)); // [2, 1, 4, 3, 5 ]
+console.log(inorderTraversal4()); // []

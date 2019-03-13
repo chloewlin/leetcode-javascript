@@ -35,6 +35,13 @@ var isPalindrome = function(head) {
   return original === reversed;
 };
 
+// Solution 2: two pointers
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+const isPalindrome = (head) => {
+
+};
+
 // Tests
 let head = new ListNode(1);
 head.next = new ListNode(2);

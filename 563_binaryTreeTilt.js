@@ -27,7 +27,6 @@ function TreeNode(val) {
 };
 
 const findTilt2 = (root) => {
-  if (!root) return 0;
   let total = 0;
 
   const findSum = (root) => {
@@ -40,8 +39,7 @@ const findTilt2 = (root) => {
   findSum(root);
 
   return total;
-}
-
+};
 
 // Tests 
 // 
@@ -66,6 +64,6 @@ t1.left = new TreeNode(2);
 t1.right = new TreeNode(3);
 
 // console.log(findTilt(t)); // 28
-// console.log(findTilt2(t)); // 28
+console.log(findTilt2(t)); // 28
 // console.log(findTilt(t1)); // 1
-// console.log(findTilt2(t1)); // 1
+console.log(findTilt2(t1)); // 1

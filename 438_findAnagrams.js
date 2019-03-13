@@ -20,7 +20,7 @@
 // The substring with start index = 2 is "ab", which is an anagram of "ab".
 
 // Strategy: Sliding Window
-// Reference: Leetcode #76 minWindow
+// Time Complexity: O(n)
 var findAnagrams = function(s, p) {
   let ans = [];
   let hash = {};
@@ -59,3 +59,8 @@ var findAnagrams = function(s, p) {
 
 console.log(findAnagrams("cbaebabacd", "abc")); // [0,6]
 console.log(findAnagrams("abab", "ab")); // [0,1,2]
+
+// Also reference: 
+// #242 isAnagram (easy)
+// #567 checkPermutation (medium)
+// #76  Minimum Window Substring (hard)
